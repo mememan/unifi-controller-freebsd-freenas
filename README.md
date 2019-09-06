@@ -6,7 +6,7 @@ A shell script package that provides the UniFi Controller software.
 Purpose
 -------
 
-The objective of this project is to develop and maintain a package that provides [Ubiquiti's](http://www.ubnt.com/) UniFi Controller software for the FreeBSD-based jail. Current stable version 5.5.20
+The objective of this project is to develop and maintain a package that provides [Ubiquiti's](http://www.ubnt.com/) UniFi Controller software for the FreeBSD-based jail. Current stable version 5.11.39
 
 Status
 ------
@@ -15,7 +15,7 @@ The project now provides two working scripts: an rc script to start and stop the
 
 Upgrade
 -------
-Upgrade to current is working to 5.5.20 (possibly)
+Upgrade to current is working to 5.11.39 (possibly)
 
 Milestones
 ----------
@@ -46,7 +46,7 @@ To install the controller software and the rc script:
 2. Run this one-line command, which downloads the install script from Github and executes it with sh or copy install_unifi.sh file to new file and sh ./filename.sh and your controller will be running when complete.
 
   ```
-    fetch -o install-unifi.sh https://raw.githubusercontent.com/TechButton/unifi-controller-freebsd-freenas/master/install-unifi/install-unifi.sh
+    fetch -o install-unifi.sh https://raw.githubusercontent.com/mememan/unifi-controller-freebsd-freenas/master/install-unifi/install-unifi.sh
   ```
 Or
 
@@ -54,7 +54,7 @@ Or
 Login with SSH to your FreeNAS (or alternatively go to shell in WebGUI)
 type: 'jls' (without ' ' ) and take the note of the # of jail of your Unifi installation
 type: jexec # csh' (where # is the number of the jail noted in last step)
-type: fetch -o install-unifi.sh https://raw.githubusercontent.com/TechButton/unifi-controller-freebsd-freenas/master/install-unifi/install-unifi.sh
+type: fetch -o install-unifi.sh https://raw.githubusercontent.com/mememan/unifi-controller-freebsd-freenas/master/install-unifi/install-unifi.sh
 type: chmod 755 install-unifi.sh
 type: ./install-unifi.sh
   ```
@@ -70,14 +70,14 @@ To start and stop the controller, use the `service` command from the command lin
 - To start the controller:
 
   ```
-    service unifi.sh start
+    service unifi start
   ```
   The UniFi controller takes a few minutes to start. The 'start' command exits immediately while the startup continues in the background.
 
 - To stop the controller:
 
   ```
-    service unifi.sh stop
+    service unifi stop
   ```
   The the stop command takes a while to execute, and then the shutdown continues for several minutes in the background. The rc script will wait until the command received and the shutdown is finished. The idea is to hold up system shutdown until the UniFi controller has a chance to exit cleanly.
   
@@ -86,7 +86,7 @@ References
 ----------
 Current Version 5.5.20 fixes
 https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-5-20-Stable-has-been-released/ba-p/2011817
-Thanks to thecodemonk for your hard work, modified from https://github.com/thecodemonk/unifi-pfsense 
+Thanks to Techbutton and thecodemonk for your hard work, modified from https://github.com/thecodemonk/unifi-pfsense 
 
 These sources of information immediately come to mind:
 
