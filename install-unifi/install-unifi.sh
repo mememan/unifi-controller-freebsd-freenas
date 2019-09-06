@@ -121,7 +121,7 @@ fi
 echo "Install snappy java" 
 env ASSUME_ALWAYS_YES=YES /usr/sbin/pkg install snappyjava
 /bin/mv /usr/local/UniFi/lib/snappy-java-1.1.7.2.jar  snappy-java-1.1.7.2.jar.bak
-/bin/ln -s /usr/local/share/java/classes/snappy-java.jar  /usr/local/UniFi/lib/snappy-java-1.1.7..jar
+/bin/ln -s /usr/local/share/java/classes/snappy-java.jar  /usr/local/UniFi/lib/snappy-java-1.1.7.2.jar
 
 # Start it up:
 echo -n "Starting the unifi service..."
