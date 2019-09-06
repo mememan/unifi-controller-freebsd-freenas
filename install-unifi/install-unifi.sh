@@ -4,10 +4,10 @@
 # Installs the Uni-Fi controller software on a FreeBSD machine or FreeBSD Jail running on FreeNAS.
 
 # The latest version of UniFi:
-UNIFI_SOFTWARE_URL="https://dl.ubnt.com/unifi/5.8.28/UniFi.unix.zip"
+UNIFI_SOFTWARE_URL="https://dl.ubnt.com/unifi/5.11.39/UniFi.unix.zip"
 
 # The rc script associated with this branch or fork:
-RC_SCRIPT_URL="https://raw.githubusercontent.com/TechButton/unifi-controller-freebsd-freenas/master/rc.d/unifi.sh"
+RC_SCRIPT_URL="http://raw.githubusercontent.com/mememan/unifi-controller-freebsd-freenas/edit/master/install-unifi/install-unifi"
 
 # If pkg-ng is not yet installed, bootstrap it:
 if ! /usr/sbin/pkg -N 2> /dev/null; then
@@ -24,9 +24,9 @@ fi
 
 # Stop the controller if it's already running...
 # First let's try the rc script if it exists:
-if [ -f /usr/local/etc/rc.d/unifi.sh ]; then
+if [ -f /usr/local/etc/rc.d/unifi ]; then
   echo -n "Stopping the unifi service..."
-  /usr/sbin/service unifi.sh stop
+  /usr/sbin/service unifi stop
   echo " done."
 fi
 
@@ -72,7 +72,7 @@ echo " done."
 # Install mongodb, OpenJDK, and unzip (required to unpack Ubiquiti's download):
 # -F skips a package if it's already installed, without throwing an error.
 echo "Installing required packages..."
-env ASSUME_ALWAYS_YES=YES /usr/sbin/pkg install mongodb openjdk8 unzip pcre v8 snappy
+env ASSUME_ALWAYS_YES=YES /usr/sbin/pkg install mongodb36 openjdk8 unzip pcre v8 snappy
 echo " done."
 
 # Switch to a temp directory for the Unifi download:
@@ -100,7 +100,7 @@ echo -n "Installing rc script..."
 echo " done."
 
 # Fix permissions so it'll run
-chmod +x /usr/local/etc/rc.d/unifi.sh
+chmod +x /usr/local/etc/rc.d/unifi
 
 # Add the startup variable to rc.conf.local.
 # Eventually, this step will need to be folded into pfSense, which manages the main rc.conf.
@@ -120,10 +120,10 @@ fi
 #TODO - *Need to verify the current version of snappyjava*
 echo "Install snappy java" 
 env ASSUME_ALWAYS_YES=YES /usr/sbin/pkg install snappyjava
-/bin/mv /usr/local/UniFi/lib/snappy-java-1.1.2.6.jar  snappy-java-1.1.2.6.jar.bak
-/bin/ln -s /usr/local/share/java/classes/snappy-java.jar  /usr/local/UniFi/lib/snappy-java-1.1.2.6.jar
+/bin/mv /usr/local/UniFi/lib/snappy-java-1.1.7.2.jar  snappy-java-1.1.7.2.jar.bak
+/bin/ln -s /usr/local/share/java/classes/snappy-java.jar  /usr/local/UniFi/lib/snappy-java-1.1.7..jar
 
 # Start it up:
 echo -n "Starting the unifi service..."
-/usr/sbin/service unifi.sh start
+/usr/sbin/service unifi start
 echo " done."
