@@ -96,7 +96,7 @@ echo " done."
 
 # Fetch the rc script from github:
 echo -n "Installing rc script..."
-/usr/bin/fetch -o /usr/local/etc/rc.d/unifi.sh ${RC_SCRIPT_URL}
+/usr/bin/fetch -o /usr/local/etc/rc.d/unifi ${RC_SCRIPT_URL}
 echo " done."
 
 # Fix permissions so it'll run
